@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veritas AI — Fake News Detection & Credibility Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Top Navbar -->
+        <header class="navbar">
+            <div class="nav-brand">
+                <div class="logo-icon">🛡️</div>
+                <div class="brand-text">
+                    <h1>Veritas <span>AI</span></h1>
+                    <p class="tagline">Machine Learning Fake News Detection & Factuality Engine</p>
+                </div>
+            </div>
+            <div class="nav-badges">
+                <span class="badge badge-success"><span class="pulse-dot"></span> Model: Active</span>
+                <span class="badge badge-outline">Passive-Aggressive & Ensemble</span>
+                <span class="badge badge-indigo">Accuracy: 100.0%</span>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs-nav">
+            <button class="tab-btn active" data-tab="tab-live">
+                <span class="tab-icon">📰</span> Live News Detector
+            </button>
+            <button class="tab-btn" data-tab="tab-batch">
+                <span class="tab-icon">📁</span> Batch CSV Analysis
+            </button>
+            <button class="tab-btn" data-tab="tab-metrics">
+                <span class="tab-icon">📊</span> Model Performance & Benchmarks
+            </button>
+            <button class="tab-btn" data-tab="tab-about">
+                <span class="tab-icon">💡</span> Methodology & Architecture
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- TAB 1: LIVE DETECTOR -->
+            <section id="tab-live" class="tab-pane active">
+                <div class="grid-2col">
+                    <!-- Left: Input Area -->
+                    <div class="card input-card">
+                        <div class="card-header">
+                            <h2>Analyze Article or Headline</h2>
+                            <p class="subtitle">Paste an article body, news snippet, or headline below for instant factuality verification.</p>
+                        </div>
+
+                        <!-- Sample Quick-Loaders -->
+                        <div class="sample-loaders">
+                            <span class="sample-label">Quick Test Samples:</span>
+                            <div class="sample-buttons">
+                                <button type="button" class="btn-sample sample-real" data-sample="0">✅ Real: Science (JWST)</button>
+                                <button type="button" class="btn-sample sample-real" data-sample="1">✅ Real: Economy (Fed)</button>
+                                <button type="button" class="btn-sample sample-fake" data-sample="2">🚨 Fake: Miracle Cure</button>
+                                <button type="button" class="btn-sample sample-fake" data-sample="3">🚨 Fake: 5G Mind Control</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea id="article-input" placeholder="Type or paste the news article or headline here..." rows="8"></textarea>
+                            <div class="textarea-footer">
+                                <span id="char-counter">0 words | 0 characters</span>
+                                <button id="btn-clear" type="button" class="btn-text">Clear Text</button>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button id="btn-analyze" class="btn btn-primary">
+                                <span class="btn-text">🔍 Analyze News</span>
+                                <span class="loader-spinner" style="display: none;"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Results Card -->
+                    <div class="card results-card" id="results-card">
+                        <div class="empty-state" id="empty-state">
+                            <div class="empty-icon">🔎</div>
+                            <h3>Awaiting Input</h3>
+                            <p>Enter text or select a sample on the left, then click <strong>Analyze News</strong> to evaluate factuality, stylometric cues, and credibility indicators.</p>
+                        </div>
+
+                        <div class="result-details" id="result-details" style="display: none;">
+                            <!-- Verdict Banner -->
+                            <div class="verdict-banner" id="verdict-banner">
+                                <div class="verdict-header">
+                                    <div class="verdict-icon" id="verdict-icon">🛡️</div>
+                                    <div>
+                                        <div class="verdict-label" id="verdict-label">CREDIBLE / RELIABLE</div>
+                                        <div class="verdict-sub" id="verdict-sub">High factual alignment with verified journalistic reporting</div>
+                                    </div>
+                                </div>
+                                <div class="risk-badge" id="risk-badge">LOW RISK</div>
+                            </div>
+
+                            <!-- Confidence Meter -->
+                            <div class="confidence-container">
+                                <div class="meter-labels">
+                                    <span class="meter-title">Classification Confidence</span>
+                                    <span class="meter-value" id="confidence-val">98.5%</span>
+                                </div>
+                                <div class="meter-bar-bg">
+                                    <div class="meter-bar-fill" id="meter-bar-fill" style="width: 0%;"></div>
+                                </div>
+                                <div class="probability-split">
+                                    <span class="prob-tag prob-real" id="prob-real-tag">Credible: 98.5%</span>
+                                    <span class="prob-tag prob-fake" id="prob-fake-tag">Deceptive: 1.5%</span>
+                                </div>
+                            </div>
+
+                            <!-- Stylometric Cues 4-grid -->
+                            <div class="stylometrics-grid">
+                                <div class="sty-card">
+                                    <div class="sty-icon">🚨</div>
+                                    <div class="sty-info">
+                                        <span class="sty-value" id="sty-sensational">0%</span>
+                                        <span class="sty-label">Sensationalism</span>
+                                    </div>
+                                </div>
+                                <div class="sty-card">
+                                    <div class="sty-icon">🏛️</div>
+                                    <div class="sty-info">
+                                        <span class="sty-value" id="sty-credibility">100%</span>
+                                        <span class="sty-label">Credibility Signals</span>
+                                    </div>
+                                </div>
+                                <div class="sty-card">
+                                    <div class="sty-icon">📢</div>
+                                    <div class="sty-info">
+                                        <span class="sty-value" id="sty-caps">2.1%</span>
+                                        <span class="sty-label">Shouting / All-Caps</span>
+                                    </div>
+                                </div>
+                                <div class="sty-card">
+                                    <div class="sty-icon">❗</div>
+                                    <div class="sty-info">
+                                        <span class="sty-value" id="sty-punctuation">0</span>
+                                        <span class="sty-label">Exclamation Marks</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Explainability / Token Influencers -->
+                            <div class="explainability-box">
+                                <h4>Model Attribution & Influential Cues</h4>
+                                <div class="cues-section">
+                                    <div class="cue-group">
+                                        <span class="cue-header text-danger">⚠️ Deceptive / Sensationalist Cues:</span>
+                                        <div class="pills-container" id="deceptive-pills">
+                                            <span class="pill-none">None detected</span>
+                                        </div>
+                                    </div>
+                                    <div class="cue-group">
+                                        <span class="cue-header text-success">✅ Credible / Journalistic Cues:</span>
+                                        <div class="pills-container" id="credible-pills">
+                                            <span class="pill-none">None detected</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: BATCH CSV ANALYSIS -->
+            <section id="tab-batch" class="tab-pane">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Batch News File Verification (CSV)</h2>
+                        <p class="subtitle">Upload a CSV file with news headlines or articles to classify multiple records simultaneously.</p>
+                    </div>
+
+                    <div class="batch-upload-box" id="drop-zone">
+                        <div class="upload-icon">📂</div>
+                        <h3>Drag & Drop CSV File Here</h3>
+                        <p>Or click to browse from your computer. The CSV should contain a column named <code>text</code>, <code>headline</code>, or <code>article</code>.</p>
+                        <input type="file" id="file-input" accept=".csv" style="display: none;">
+                        <div class="batch-btn-group">
+                            <button type="button" class="btn btn-outline" id="btn-browse">Browse File</button>
+                            <a href="/api/sample-csv" class="btn btn-secondary" download>📥 Download Sample CSV</a>
+                        </div>
+                    </div>
+
+                    <div id="batch-status" class="batch-status" style="display: none;">
+                        <div class="spinner-inline"></div>
+                        <span id="batch-status-text">Processing articles through NLP pipeline...</span>
+                    </div>
+
+                    <div id="batch-results-container" style="display: none;" class="batch-results-container">
+                        <div class="batch-summary-header">
+                            <div>
+                                <h3 id="batch-count-title">Batch Results (5 items processed)</h3>
+                                <div class="filter-buttons">
+                                    <button class="filter-btn active" data-filter="all">All</button>
+                                    <button class="filter-btn" data-filter="REAL">Credible (Real)</button>
+                                    <button class="filter-btn" data-filter="FAKE">Deceptive (Fake)</button>
+                                </div>
+                            </div>
+                            <button id="btn-export-csv" class="btn btn-secondary">💾 Export Results to CSV</button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="data-table" id="batch-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Article Excerpt</th>
+                                        <th>Verdict</th>
+                                        <th>Confidence</th>
+                                        <th>Risk</th>
+                                        <th>Sensationalism</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="batch-tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: MODEL PERFORMANCE & BENCHMARKS -->
+            <section id="tab-metrics" class="tab-pane">
+                <div class="metrics-dashboard">
+                    <!-- High level summary cards -->
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <span class="metric-label">Best Performing Model</span>
+                            <span class="metric-big text-indigo" id="metric-best-model">Passive-Aggressive</span>
+                            <span class="metric-sub">Calibrated Probability Pipeline</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Test Set Accuracy</span>
+                            <span class="metric-big text-success" id="metric-accuracy">100.0%</span>
+                            <span class="metric-sub">Across 140 Held-Out Samples</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">F1-Score</span>
+                            <span class="metric-big text-cyan" id="metric-f1">1.0000</span>
+                            <span class="metric-sub">Balanced Precision & Recall</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Corpus Size</span>
+                            <span class="metric-big text-purple" id="metric-samples">700</span>
+                            <span class="metric-sub">50% Real / 50% Fake Balance</span>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Table -->
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h3>Model Benchmark Comparison</h3>
+                            <p class="subtitle">Evaluated on cross-validation and independent test splits.</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="benchmark-table">
+                                <thead>
+                                    <tr>
+                                        <th>Algorithm</th>
+                                        <th>CV F1-Score (5-Fold)</th>
+                                        <th>Test Accuracy</th>
+                                        <th>Test Precision</th>
+                                        <th>Test Recall</th>
+                                        <th>Test F1</th>
+                                        <th>ROC-AUC</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="benchmark-tbody">
+                                    <!-- Populated via API -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Confusion Matrix & Dataset Stats -->
+                    <div class="grid-2col mt-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Confusion Matrix (Held-Out Test Set)</h3>
+                                <p class="subtitle">Classification distribution across Ground Truth vs. Predicted.</p>
+                            </div>
+                            <div class="confusion-matrix-box">
+                                <div class="cm-grid">
+                                    <div class="cm-cell cm-tn">
+                                        <span class="cm-num" id="cm-tn">70</span>
+                                        <span class="cm-label">True Negative (Fake)</span>
+                                    </div>
+                                    <div class="cm-cell cm-fp">
+                                        <span class="cm-num" id="cm-fp">0</span>
+                                        <span class="cm-label">False Positive (Type I)</span>
+                                    </div>
+                                    <div class="cm-cell cm-fn">
+                                        <span class="cm-num" id="cm-fn">0</span>
+                                        <span class="cm-label">False Negative (Type II)</span>
+                                    </div>
+                                    <div class="cm-cell cm-tp">
+                                        <span class="cm-num" id="cm-tp">70</span>
+                                        <span class="cm-label">True Positive (Real)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Dataset & Vocabulary Statistics</h3>
+                                <p class="subtitle">Feature engineering and linguistic corpus parameters.</p>
+                            </div>
+                            <ul class="stats-list">
+                                <li><strong>Vectorization:</strong> N-Gram TF-IDF (Unigrams + Bigrams, 1-2)</li>
+                                <li><strong>Vocabulary Features:</strong> 5,000 max sublinear TF features</li>
+                                <li><strong>Stopword Filtering:</strong> Built-in 140+ English functional stopword set</li>
+                                <li><strong>Preprocessing:</strong> Contraction expansion, HTML/URL stripping, regex tokenization</li>
+                                <li><strong>Calibration:</strong> CalibratedClassifierCV probability mapping</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: METHODOLOGY & ARCHITECTURE -->
+            <section id="tab-about" class="tab-pane">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Architecture & Machine Learning Methodology</h2>
+                        <p class="subtitle">Understanding the data pipeline, feature engineering, and inference flow.</p>
+                    </div>
+                    <div class="about-content">
+                        <div class="methodology-card">
+                            <div class="methodology-badge">Step 1</div>
+                            <h3>Text Preprocessing & Normalization</h3>
+                            <p>Raw text passes through an extensive cleaning pipeline: HTML tags, URLs, email addresses, and non-alphanumeric noise are stripped. Standard English contractions (e.g., <em>don't</em> &rarr; <em>do not</em>) are expanded, and functional stopwords are selectively filtered while retaining context.</p>
+                        </div>
+
+                        <div class="methodology-card">
+                            <div class="methodology-badge">Step 2</div>
+                            <h3>TF-IDF N-Gram Vectorization</h3>
+                            <p>We extract Term Frequency-Inverse Document Frequency (TF-IDF) features with unigrams and bigrams (`ngram_range=(1, 2)`). Bigrams enable capturing contextual phrases like <em>"peer-reviewed study"</em> or <em>"secret miracle cure"</em> that individual words miss.</p>
+                        </div>
+
+                        <div class="methodology-card">
+                            <div class="methodology-badge">Step 3</div>
+                            <h3>Stylometric & Heuristic Signals</h3>
+                            <p>Fake and sensational news often relies on distinct psychological levers: excessive uppercase letters (all-caps shouting), high exclamation mark frequency, and clickbait words. Our system extracts these quantitative stylometric indicators in tandem with statistical NLP features.</p>
+                        </div>
+
+                        <div class="methodology-card">
+                            <div class="methodology-badge">Step 4</div>
+                            <h3>Passive-Aggressive & Ensemble Modeling</h3>
+                            <p>The core classifier employs the <strong>Passive-Aggressive Classifier</strong>, an online margin-based algorithm renowned for high precision on sparse text classification tasks. We calibrate its margin distance into smooth probabilities using Sigmoid calibration (`CalibratedClassifierCV`), benchmarked against Naive Bayes and Logistic Regression.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Veritas AI &mdash; Machine Learning Fake News Detection System &bull; Built with Python, Scikit-Learn, and Flask</p>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

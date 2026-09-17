@@ -1,0 +1,334 @@
+{
+  "best_model": "Passive-Aggressive",
+  "models_benchmark": {
+    "Passive-Aggressive": {
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "test_accuracy": 1.0,
+      "test_precision": 1.0,
+      "test_recall": 1.0,
+      "test_f1": 1.0,
+      "test_roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          70,
+          0
+        ],
+        [
+          0,
+          70
+        ]
+      ]
+    },
+    "Multinomial Naive Bayes": {
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "test_accuracy": 1.0,
+      "test_precision": 1.0,
+      "test_recall": 1.0,
+      "test_f1": 1.0,
+      "test_roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          70,
+          0
+        ],
+        [
+          0,
+          70
+        ]
+      ]
+    },
+    "Logistic Regression": {
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "test_accuracy": 1.0,
+      "test_precision": 1.0,
+      "test_recall": 1.0,
+      "test_f1": 1.0,
+      "test_roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          70,
+          0
+        ],
+        [
+          0,
+          70
+        ]
+      ]
+    },
+    "Voting Ensemble (Best Hybrid)": {
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0,
+      "test_accuracy": 1.0,
+      "test_precision": 1.0,
+      "test_recall": 1.0,
+      "test_f1": 1.0,
+      "test_roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          70,
+          0
+        ],
+        [
+          0,
+          70
+        ]
+      ]
+    }
+  },
+  "explainability": {
+    "top_fake_tokens": [
+      {
+        "token": "secret",
+        "weight": -1.2155
+      },
+      {
+        "token": "leaked",
+        "weight": -1.0923
+      },
+      {
+        "token": "truth",
+        "weight": -0.8271
+      },
+      {
+        "token": "shocking",
+        "weight": -0.8099
+      },
+      {
+        "token": "must watch",
+        "weight": -0.703
+      },
+      {
+        "token": "must",
+        "weight": -0.703
+      },
+      {
+        "token": "watch",
+        "weight": -0.703
+      },
+      {
+        "token": "corrupt",
+        "weight": -0.6916
+      },
+      {
+        "token": "immediately",
+        "weight": -0.6816
+      },
+      {
+        "token": "government",
+        "weight": -0.6804
+      },
+      {
+        "token": "viral",
+        "weight": -0.6576
+      },
+      {
+        "token": "patriots",
+        "weight": -0.6516
+      },
+      {
+        "token": "every",
+        "weight": -0.6396
+      },
+      {
+        "token": "share",
+        "weight": -0.6307
+      },
+      {
+        "token": "globalist",
+        "weight": -0.6272
+      },
+      {
+        "token": "military",
+        "weight": -0.6216
+      },
+      {
+        "token": "panic",
+        "weight": -0.5952
+      },
+      {
+        "token": "terrifying",
+        "weight": -0.5834
+      },
+      {
+        "token": "completely",
+        "weight": -0.5813
+      },
+      {
+        "token": "single",
+        "weight": -0.5774
+      },
+      {
+        "token": "every single",
+        "weight": -0.5774
+      },
+      {
+        "token": "internet",
+        "weight": -0.5554
+      },
+      {
+        "token": "television",
+        "weight": -0.546
+      },
+      {
+        "token": "revealed",
+        "weight": -0.5428
+      },
+      {
+        "token": "news",
+        "weight": -0.5417
+      },
+      {
+        "token": "media",
+        "weight": -0.5317
+      },
+      {
+        "token": "mainstream",
+        "weight": -0.5317
+      },
+      {
+        "token": "like",
+        "weight": -0.5239
+      },
+      {
+        "token": "inside",
+        "weight": -0.5147
+      },
+      {
+        "token": "human",
+        "weight": -0.5137
+      }
+    ],
+    "top_real_tokens": [
+      {
+        "token": "public",
+        "weight": 0.7319
+      },
+      {
+        "token": "official",
+        "weight": 0.7244
+      },
+      {
+        "token": "statutory",
+        "weight": 0.7091
+      },
+      {
+        "token": "review",
+        "weight": 0.7084
+      },
+      {
+        "token": "official update",
+        "weight": 0.6977
+      },
+      {
+        "token": "update",
+        "weight": 0.6977
+      },
+      {
+        "token": "remain",
+        "weight": 0.6624
+      },
+      {
+        "token": "scheduled",
+        "weight": 0.6418
+      },
+      {
+        "token": "regulatory",
+        "weight": 0.6185
+      },
+      {
+        "token": "regional",
+        "weight": 0.6023
+      },
+      {
+        "token": "following",
+        "weight": 0.5843
+      },
+      {
+        "token": "findings",
+        "weight": 0.5429
+      },
+      {
+        "token": "report",
+        "weight": 0.5158
+      },
+      {
+        "token": "peer",
+        "weight": 0.5134
+      },
+      {
+        "token": "agencies",
+        "weight": 0.495
+      },
+      {
+        "token": "hearings",
+        "weight": 0.4924
+      },
+      {
+        "token": "subsequent",
+        "weight": 0.4915
+      },
+      {
+        "token": "guidelines",
+        "weight": 0.4794
+      },
+      {
+        "token": "published",
+        "weight": 0.4694
+      },
+      {
+        "token": "reported",
+        "weight": 0.4618
+      },
+      {
+        "token": "federal",
+        "weight": 0.4574
+      },
+      {
+        "token": "hearings anticipated",
+        "weight": 0.449
+      },
+      {
+        "token": "subsequent quarter",
+        "weight": 0.449
+      },
+      {
+        "token": "filings",
+        "weight": 0.449
+      },
+      {
+        "token": "filings scheduled",
+        "weight": 0.449
+      },
+      {
+        "token": "regulatory filings",
+        "weight": 0.449
+      },
+      {
+        "token": "anticipated",
+        "weight": 0.449
+      },
+      {
+        "token": "public hearings",
+        "weight": 0.449
+      },
+      {
+        "token": "anticipated subsequent",
+        "weight": 0.449
+      },
+      {
+        "token": "quarter",
+        "weight": 0.449
+      }
+    ]
+  },
+  "dataset_stats": {
+    "total_samples": 700,
+    "train_samples": 560,
+    "test_samples": 140,
+    "real_samples": 350,
+    "fake_samples": 350
+  }
+}
